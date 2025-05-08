@@ -1,16 +1,14 @@
-import { Logo } from "@/once-ui/components";
-
 const person = {
-  firstName: "Selene",
-  lastName: "Yu",
+  firstName: "Lorenzo",
+  lastName: "Martinez",
   get name() {
     return `${this.firstName} ${this.lastName}`;
   },
-  role: "Design Engineer",
+  role: "Software Engineer",
   avatar: "/images/avatar.jpg",
-  email: "example@gmail.com",
-  location: "Asia/Jakarta", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
-  languages: ["English", "Bahasa"], // optional: Leave the array empty if you don't want to display languages
+  email: "contact@lorenzo.tech",
+  location: "America/Los_Angeles", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
+  languages: ["English"], // optional: Leave the array empty if you don't want to display languages
 };
 
 const newsletter = {
@@ -18,8 +16,8 @@ const newsletter = {
   title: <>Subscribe to {person.firstName}'s Newsletter</>,
   description: (
     <>
-      I occasionally write about design, technology, and share thoughts on the intersection of
-      creativity and engineering.
+      I occasionally write about technology, gaming, and share thoughts on other
+      aspects of my professional life.
     </>
   ),
 };
@@ -30,12 +28,12 @@ const social = [
   {
     name: "GitHub",
     icon: "github",
-    link: "https://github.com/once-ui-system/nextjs-starter",
+    link: "https://github.com/Lor3nzoMartinez",
   },
   {
     name: "LinkedIn",
     icon: "linkedin",
-    link: "https://www.linkedin.com/company/once-ui/",
+    link: "https://www.linkedin.com/in/lorenzo-martinez/",
   },
   {
     name: "X",
@@ -57,14 +55,18 @@ const home = {
   description: `Portfolio website showcasing my work as a ${person.role}`,
   headline: <>Building bridges between design and code</>,
   featured: {
-    display: true,
-    title: <>Recent project: <strong className="ml-4">Once UI</strong></>,
+    display: false,
+    title: (
+      <>
+        Recent project: <strong className="ml-4">Once UI</strong>
+      </>
+    ),
     href: "/work/building-once-ui-a-customizable-design-system",
   },
   subline: (
     <>
-      I'm Selene, a design engineer at <Logo icon={false} style={{ display: "inline-flex", top: "0.25em", marginLeft: "-0.25em" }}/>, where I craft intuitive
-      <br /> user experiences. After hours, I build my own projects.
+      I'm Lorenzo, a Software engineer at Cisco Meraki, where I build the future
+      of networking.
     </>
   ),
 };
@@ -83,16 +85,20 @@ const about = {
   },
   calendar: {
     display: true,
-    link: "https://cal.com",
+    link: "https://calendly.com/contact-lorenzo",
   },
   intro: {
     display: true,
     title: "Introduction",
     description: (
       <>
-        Selene is a Jakarta-based design engineer with a passion for transforming complex challenges
-        into simple, elegant design solutions. Her work spans digital interfaces, interactive
-        experiences, and the convergence of design and technology.
+        Lorenzo is a Software Engineer with a foundation in both military
+        discipline and full-stack development, He thrives at the intersection of
+        systems design, user experience, and platform resilience. He brings 8+
+        years of leadership from his time in the U.S. military into every
+        engineering challenge he faces — whether he's architecting scalable
+        APIs, enhancing web platforms, or mentoring teammates through complex
+        builds.
       </>
     ),
   },
@@ -101,41 +107,84 @@ const about = {
     title: "Work Experience",
     experiences: [
       {
-        company: "FLY",
-        timeframe: "2022 - Present",
-        role: "Senior Design Engineer",
+        company: "Cisco Meraki",
+        timeframe: "June 2021 - Present",
+        role: "Full Stack Software Engineer",
         achievements: [
           <>
-            Redesigned the UI/UX for the FLY platform, resulting in a 20% increase in user
-            engagement and 30% faster load times.
+            Built backend APIs and frontend components using React, TypeScript,
+            and Ruby on Rails to integrate network performance data and insights
+            to enhanced platform engagement and improved user interaction for
+            more than over 4 million active networks globally.
           </>,
           <>
-            Spearheaded the integration of AI tools into design workflows, enabling designers to
-            iterate 50% faster.
+            Led a workshop at Cisco Live, a global Cisco conference,
+            demonstrating how customers can leverage AI technologies to improve
+            network resilience; received an award for delivering one of the top
+            talks at an international conference.
+          </>,
+          <>
+            Played an integral role in developing a centralized feature that
+            unified insights across all Meraki products, surfacing critical
+            network health information to improve system visibility and
+            resilience.
+          </>,
+          <>
+            Led collaborative sprints with design, product, and engineering
+            teams, ensuring the delivery of high impact features.
           </>,
         ],
         images: [
           // optional: leave the array empty if you don't want to display images
-          {
-            src: "/images/projects/project-01/cover-01.jpg",
-            alt: "Once UI Project",
-            width: 16,
-            height: 9,
-          },
+          // {
+          //   src: "/images/projects/project-01/cover-01.jpg",
+          //   alt: "Once UI Project",
+          //   width: 16,
+          //   height: 9,
+          // },
         ],
       },
       {
-        company: "Creativ3",
-        timeframe: "2018 - 2022",
-        role: "Lead Designer",
+        company: "Pallet.click",
+        timeframe: "May 2019 – June 2021",
+        role: "Full Stack Web Developer",
         achievements: [
           <>
-            Developed a design system that unified the brand across multiple platforms, improving
-            design consistency by 40%.
+            Developed user-facing web applications that boosted engagement
+            within a commercial sector marketplace.
           </>,
           <>
-            Led a cross-functional team to launch a new product line, contributing to a 15% increase
-            in overall company revenue.
+            Built full-stack solutions, integrating React frontend with GraphQL
+            and AWS-powered backend services.
+          </>,
+          <>
+            Focused on UX and performance improvements, leading to a 67% rise in
+            active user sessions.
+          </>,
+          <>
+            Designed scalable backend services and worked across the stack to
+            optimize platform responsiveness.
+          </>,
+        ],
+        images: [],
+      },
+      {
+        company: "United States Army",
+        timeframe: "Oct 2013 – Apr 2020",
+        role: "25B Information Technology Specialist",
+        achievements: [
+          <>
+            Supported and maintained IT infrastructure, ensuring system
+            reliability and user engagement across mission-critical
+            environments.
+          </>,
+          <>
+            Authored technical documentation and conducted training to enhance
+            system usability and team technical growth.
+          </>,
+          <>
+            Fostered a growth mindset culture, encouraging continuous learning
+            and cross-training within IT teams.
           </>,
         ],
         images: [],
@@ -147,22 +196,21 @@ const about = {
     title: "Studies",
     institutions: [
       {
-        name: "University of Jakarta",
-        description: <>Studied software engineering.</>,
-      },
-      {
-        name: "Build the Future",
-        description: <>Studied online marketing and personal branding.</>,
+        name: "Seattle Pacific University",
+        description: <>Bachelor of Science, Computer Science</>,
+        timeframe: "Aug 2018 – Jun 2022",
       },
     ],
   },
   technical: {
-    display: true, // set to false to hide this section
+    display: false, // set to false to hide this section
     title: "Technical skills",
     skills: [
       {
         title: "Figma",
-        description: <>Able to prototype in Figma with Once UI with unnatural speed.</>,
+        description: (
+          <>Able to prototype in Figma with Once UI with unnatural speed.</>
+        ),
         // optional: leave the array empty if you don't want to display images
         images: [
           {
@@ -181,7 +229,9 @@ const about = {
       },
       {
         title: "Next.js",
-        description: <>Building next gen apps with Next.js + Once UI + Supabase.</>,
+        description: (
+          <>Building next gen apps with Next.js + Once UI + Supabase.</>
+        ),
         // optional: leave the array empty if you don't want to display images
         images: [
           {
@@ -199,7 +249,7 @@ const about = {
 const blog = {
   path: "/blog",
   label: "Blog",
-  title: "Writing about design and tech...",
+  title: "Tech diaries",
   description: `Read what ${person.name} has been up to recently`,
   // Create new blog posts by adding a new .mdx file to app/blog/posts
   // All posts will be listed on the /blog route
@@ -209,60 +259,9 @@ const work = {
   path: "/work",
   label: "Work",
   title: `Projects – ${person.name}`,
-  description: `Design and dev projects by ${person.name}`,
+  description: `Magnificent feats of engineering by ${person.name}`,
   // Create new project pages by adding a new .mdx file to app/blog/posts
   // All projects will be listed on the /home and /work routes
 };
 
-const gallery = {
-  path: "/gallery",
-  label: "Gallery",
-  title: `Photo gallery – ${person.name}`,
-  description: `A photo collection by ${person.name}`,
-  // Images by https://lorant.one
-  // These are placeholder images, replace with your own
-  images: [
-    {
-      src: "/images/gallery/horizontal-1.jpg",
-      alt: "image",
-      orientation: "horizontal",
-    },
-    {
-      src: "/images/gallery/horizontal-2.jpg",
-      alt: "image",
-      orientation: "horizontal",
-    },
-    {
-      src: "/images/gallery/horizontal-3.jpg",
-      alt: "image",
-      orientation: "horizontal",
-    },
-    {
-      src: "/images/gallery/horizontal-4.jpg",
-      alt: "image",
-      orientation: "horizontal",
-    },
-    {
-      src: "/images/gallery/vertical-1.jpg",
-      alt: "image",
-      orientation: "vertical",
-    },
-    {
-      src: "/images/gallery/vertical-2.jpg",
-      alt: "image",
-      orientation: "vertical",
-    },
-    {
-      src: "/images/gallery/vertical-3.jpg",
-      alt: "image",
-      orientation: "vertical",
-    },
-    {
-      src: "/images/gallery/vertical-4.jpg",
-      alt: "image",
-      orientation: "vertical",
-    },
-  ],
-};
-
-export { person, social, newsletter, home, about, blog, work, gallery };
+export { person, social, newsletter, home, about, blog, work };
