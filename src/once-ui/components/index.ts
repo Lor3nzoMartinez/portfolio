@@ -53,6 +53,7 @@ export * from "./Scroller";
 export * from "./SegmentedControl";
 export * from "./Select";
 export * from "./Skeleton";
+export * from "./SkillLevel";
 export * from "./SmartImage";
 export * from "./SmartLink";
 export * from "./Spinner";

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { forwardRef } from "react";
-import { Arrow, Flex, Icon, SmartLink, Text } from ".";
+import { Arrow, Flex, Icon, SmartLink, SkillLevel, Text } from ".";
 
 import styles from "./Badge.module.scss";
 import { IconName } from "../icons";
@@ -10,6 +10,8 @@ interface BadgeProps extends React.ComponentProps<typeof Flex> {
   title?: string;
   icon?: IconName;
   arrow?: boolean;
+  skillLevel?: boolean;
+  level?: number;
   children?: React.ReactNode;
   href?: string;
   effect?: boolean;
@@ -17,7 +19,7 @@ interface BadgeProps extends React.ComponentProps<typeof Flex> {
 
 const Badge = forwardRef<HTMLDivElement | HTMLAnchorElement, BadgeProps>(
   (
-    { title, icon, arrow = true, children, href, effect = true, ...rest },
+    { title, skillLevel, level, icon, arrow = false, children, href, effect = true, ...rest },
     ref
   ) => {
     const content = (
@@ -48,6 +50,7 @@ const Badge = forwardRef<HTMLDivElement | HTMLAnchorElement, BadgeProps>(
           </Text>
         )}
         {children}
+        {skillLevel && <SkillLevel level={level} trigger="#badge" />}
         {arrow && <Arrow trigger="#badge" />}
       </Flex>
     );

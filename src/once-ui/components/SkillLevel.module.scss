@@ -1,0 +1,45 @@
+.skillLevelContainer {
+    transition: var(--transition-micro-medium);
+    height: var(--static-space-16);
+    width: var(--static-space-0);
+    visibility: hidden;
+}
+
+.active {
+    width: var(--static-space-33);
+    visibility: visible;
+
+    .skillBar {
+        transition: var(--transition-micro-medium);
+        transition-delay: 0.1s;
+        transform-origin: center;
+        border-radius: 5px;
+        margin-left: 5px;
+        width: 1rem;
+        height: 1rem;
+    }
+}
+
+.levelOne {
+    background-color: green;
+}
+
+.levelTwo {
+    background-color: yellow;
+}
+
+.levelThree {
+    background-color: orange;
+}
+
+.levelFour {
+    background-color: red;
+}
+
+.onSolid {
+    background: var(--brand-on-solid-strong);
+}
+
+.onBackground {
+    background: var(--brand-on-background-strong);
+}
