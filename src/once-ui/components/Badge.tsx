@@ -25,8 +25,8 @@ const Badge = forwardRef<HTMLDivElement | HTMLAnchorElement, BadgeProps>(
     const content = (
       <Flex
         id="badge"
-        paddingX="20"
-        paddingY="12"
+        paddingX="12"
+        paddingY="8"
         fitWidth
         className={effect ? styles.animation : undefined}
         vertical="center"

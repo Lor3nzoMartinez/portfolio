@@ -203,9 +203,7 @@ export default function About() {
               gap="m"
               marginBottom="l"
             >
-              <LetterFx speed="fast" trigger="instant">
-                {about.intro.description}
-              </LetterFx>
+              {about.intro.description}
             </Column>
           )}
 
@@ -220,9 +218,83 @@ export default function About() {
                 {about.technical.title}
               </Heading>
               <Column fillWidth gap="s" marginBottom="l">
-                <Badge skillLevel level={4} arrow={false}>
-                  React
-                </Badge>
+                <Text variant="heading-strong-l">
+                  Languages
+                </Text>
+                <Row>
+                  <Badge skillLevel level={4} arrow={false}>
+                    JavaScript (ES6)
+                  </Badge>
+                  <Badge skillLevel level={4} arrow={false}>
+                    Ruby
+                  </Badge>
+                  <Badge skillLevel level={4} arrow={false}>
+                    Python
+                  </Badge>
+                  <Badge skillLevel level={4} arrow={false}>
+                    Java
+                  </Badge>
+                  <Badge skillLevel level={4} arrow={false}>
+                    C++
+                  </Badge>
+                </Row>
+                <Text variant="heading-strong-l">
+                  Frontend Technologies
+                </Text>
+                <Row>
+                  <Badge skillLevel level={4} arrow={false}>
+                    React
+                  </Badge>
+                  <Badge skillLevel level={4} arrow={false}>
+                    TypeScript
+                  </Badge>
+                  <Badge skillLevel level={4} arrow={false}>
+                    HTML
+                  </Badge>
+                  <Badge skillLevel level={4} arrow={false}>
+                   CSS
+                  </Badge>
+                </Row>
+                <Text variant="heading-strong-l">
+                  Backend Technologies
+                </Text>
+                <Row>
+                  <Badge skillLevel level={4} arrow={false}>
+                    Ruby on Rails
+                  </Badge>
+                  <Badge skillLevel level={4} arrow={false}>
+                    Node.js
+                  </Badge>
+                  <Badge skillLevel level={4} arrow={false}>
+                    Django
+                  </Badge>
+                  <Badge skillLevel level={4} arrow={false}>
+                    GraphQl
+                  </Badge>
+                  <Badge skillLevel level={4} arrow={false}>
+                   SQL
+                  </Badge>
+                </Row>
+                <Text variant="heading-strong-l">
+                  Tools
+                </Text>
+                <Row>
+                  <Badge skillLevel level={4} arrow={false}>
+                    AWS
+                  </Badge>
+                  <Badge skillLevel level={4} arrow={false}>
+                    LaunchDarkly
+                  </Badge>
+                  <Badge skillLevel level={4} arrow={false}>
+                    Slack
+                  </Badge>
+                  <Badge skillLevel level={4} arrow={false}>
+                    Agile/Scrum
+                  </Badge>
+                  <Badge skillLevel level={4} arrow={false}>
+                   Kafka
+                  </Badge>
+                </Row>
               </Column>
             </>
           )}

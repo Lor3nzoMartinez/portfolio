@@ -30,45 +30,12 @@ const SkillLevel: React.FC<SkillLevelProps> = ({
     styles.levelFour,
   ];
 
-  useEffect(() => {
-    const triggerElement = document.querySelector(trigger);
-
-    if (triggerElement && ref.current) {
-      const handleMouseOver = () => {
-        ref.current?.classList.add(styles.active);
-      };
-
-      const handleMouseOut = () => {
-        ref.current?.classList.remove(styles.active);
-      };
-
-      triggerElement.addEventListener("mouseenter", handleMouseOver);
-      triggerElement.addEventListener("mouseleave", handleMouseOut);
-
-      return () => {
-        triggerElement.removeEventListener("mouseenter", handleMouseOver);
-        triggerElement.removeEventListener("mouseleave", handleMouseOut);
-      };
-    }
-  }, [trigger]);
-
   return (
     <Flex
-      ref={ref}
       vertical="center"
       horizontal="center"
       className={classNames(styles.skillLevelContainer, className)}
-      style={{
-        transform: `scale(${scale})`,
-        ...style,
-      }}
-    >
-      <Row>
-        {[...Array(level)].map(() => (
-          <Flex className={classNames(styles.skillBar, styles.levelOne)} />
-        ))}
-      </Row>
-    </Flex>
+    />
   );
 };
 

@@ -1,0 +1,14 @@
+---
+title: "Plugins Part 1: Themes"
+publishedAt: "2024-05-02"
+summary: "Have you seen all the cool themes they have for NVIM!?"
+tag: "NVIM"
+---
+So there are so many themes and you know what options mean. I am now looking at multiple themes that all do something different that I like and as any engineer will say "Well, how would I build my own that does eveything right?"
+
+## The Nerd Fonts debacle 🤓
+I went from "what does this line at the bottom of the editor even do" to "Ok, so now how am I supposed to get those fancy arrows that seperate the sections." By the way the answer was "With nerd fonts Lorenzo" and to help set the scene here I am using nvim on ubuntu via WSL. So, installing nerd font was an adventure in itself since I started by install nerd fonts on Ubuntu (wrong place to start). Turns out since the fonts are generated through the Windows Terminal that's where you are going to want to slap you favorite nerd fonts font package.
+
+## Lualine custom setup
+After getting the whole nerd fonts issue sorted it was time to get LuaLine setup the way I wanted. First, I had to find a way to get the background to disappear because I wanted it to be the same color as the editor. In order to do that I ended up stealing the `codedark` theme and changed the `normal.c.bg` and `insert.c.bg` to have no background color. So, then I just set the seperators I wanted and defined the sections and where I wanted them and just like that this NVIM editor is already looking and feeling more like my own! 
+

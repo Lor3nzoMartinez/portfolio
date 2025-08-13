@@ -1,0 +1,40 @@
+---
+title: "Wait, what can't you customize!?"
+summary: "So of the experiences I have had with NVIM Customization"
+publishedAt: "2024-04-25"
+tag: "NVIM"
+---
+
+## First thoughts
+What even is a leader key? The key that shows the rest of the commands the way? Anyways, set up my leader key and threw a few custom binds in my `remap.lua` that make sense to me. So me of these are becoming like second nature at this point. It's thrilling to hit a nice run on a few commands in succesion and get a few long tasks done in just a few key strokes.
+
+## Peep the config 👀
+I think after taking a look at what some of the `vim.opt`s are it makes a lot fo sense. I went through and setup my general editor setting and it is really getting me excited and I am also having a lot of fun testing different options and it just seems like there is so much you can do and every little corner of this box has options that can be tweaked. Gets me quite excited about what is possible. Below are just some of the options I configured:
+
+<CodeBlock
+    marginBottom="16"
+    highlight="2"
+    codeInstances={[
+  {
+    code:
+      `
+        vim.opt.nu = true
+
+        vim.opt.tabstop = 2
+        vim.opt.softtabstop = 2
+        vim.opt.shiftwidth = 2
+        vim.opt.guicursor = "n-v-c:hor110"
+
+        vim.opt.expandtab = true
+
+        vim.opt.smartindent = true
+
+        vim.opt.hlsearch = false
+        vim.opt.incsearch = true
+
+        vim.opt.scrolloff = 25
+      `,
+    language: "lua",
+    label: "nvim/lua/lorenzo/set.lua"
+  }
+]} />
