@@ -1,0 +1,117 @@
+---
+title: "Agent Sync Dashboard"
+publishedAt: "2026-03-24"
+summary: "Built a multi-agent control room for OpenClaw that combines real session chat, workspace scanning, project-context management, and file-backed kanban task tracking in one interface."
+images:
+- "/images/projects/project-02/agent-dashboard.png"
+team:
+  - name: "Lorenzo Martinez"
+    role: "Builder / Software Engineer"
+    avatar: "/images/avatar.jpg"
+    linkedIn: "https://www.linkedin.com/in/lorenzo-martinez/"
+link: "https://github.com/Lor3nzoMartinez/openclaw-dashboard"
+---
+
+## Overview
+
+I built **Agent Sync Dashboard** as an operational layer for working with multiple OpenClaw agents across multiple project workspaces.
+
+Instead of treating agent chat, file context, and project tracking as separate tools, I wanted one place where I could:
+
+- switch between agents
+- pick the active project
+- inspect recent project state
+- chat with the selected agent in-context
+- manage project handoff docs
+- track tasks directly from the filesystem
+
+The result is a React + Tailwind dashboard that acts more like a control room than a generic kanban app.
+
+## What makes it different
+
+This project is not a fake board backed by browser-only state.
+
+It reads and writes to a real OpenClaw workspace structure:
+
+- project tasks come from `${project}/tasks`
+- long-lived project handoff/state comes from `${project}/project-context`
+- chat history comes from real OpenClaw sessions
+- task actions persist back to JSON files on disk
+
+That means the UI is sitting on top of actual project state, not a disconnected mock representation of it.
+
+## Key features
+
+- **Multi-agent workspace discovery**: scans OpenClaw workspace roots and builds agent tabs automatically.
+- **Project-aware board view**: loads the active project and shows task lanes for New, In Progress, Review, and Done.
+- **File-backed task tracking**: tasks are stored as JSON files and can be created, updated, moved, and deleted from the dashboard.
+- **Real session chat**: the chat pane connects to real OpenClaw sessions rather than a mock message list.
+- **Project initialization flow**: detects missing `tasks/` or `project-context/` directories and initializes them safely.
+- **Project context controls**: prompts the selected agent to read or update project-context files to keep handoff state healthy.
+- **Agent task assignment**: sends a selected task directly to the agent with instructions to work it and update the task state afterward.
+
+## Technical stack
+
+- **React**
+- **Vite**
+- **Tailwind CSS**
+- **Node.js filesystem APIs**
+- **Custom Vite middleware routes**
+- **OpenClaw CLI integration**
+
+## Challenges I solved
+
+### UI vs. real behavior
+A lot of the complexity in this project came from making sure the nice-looking interactions actually mapped to real system state.
+
+I had to make sure that things like:
+
+- drag and drop
+- task editing
+- task creation
+- delete actions
+- project initialization
+- agent chat actions
+
+were all connected to real file writes or real OpenClaw calls instead of stopping at the UI layer.
+
+### Drag-and-drop persistence
+One of the more interesting problems was making lane movement persist correctly. Moving a task visually is easy. Updating the correct JSON file and keeping the board consistent after refresh is the real work.
+
+I ended up tightening the drag pipeline and wiring lane changes directly into the task update path so the board would remain truthful after reload.
+
+### Local API design
+Because this project operates on local workspaces and local OpenClaw sessions, I built a set of lightweight dev-server API routes inside Vite for:
+
+- workspace scanning
+- project initialization
+- chat state lookup
+- chat send
+- task create/update/delete
+
+That let me move quickly while still treating the frontend like a real client to backend actions.
+
+## Outcome
+
+The dashboard became a strong MVP for agent operations:
+
+- functional enough to use for real work
+- structured enough to support clean project handoffs
+- flexible enough to expand into a fuller operational platform later
+
+More importantly, it proved a product idea I care about: agent tooling gets much more useful when chat, context, and task state live together in one interface.
+
+## Why I am proud of it
+
+This is exactly the kind of build I like to do.
+
+It combines:
+
+- product thinking
+- UI/UX iteration
+- filesystem/data modeling
+- debugging under pressure
+- full-stack integration
+- practical workflow design
+
+It started as “let me make a scrum-board-style dashboard” and ended as a real operational surface for managing multi-agent work.

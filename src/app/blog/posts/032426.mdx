@@ -1,0 +1,219 @@
+---
+title: "I built a multi-agent control room in a day"
+publishedAt: "2026-03-24"
+summary: "Today I turned an idea into a working dashboard for coordinating agent workspaces, real chat sessions, project context, and task tracking all in one place."
+tags:
+  - "React"
+  - "Tailwind"
+  - "Vite"
+  - "OpenClaw"
+  - "Node.js"
+  - "JavaScript"
+---
+I had one of those days where a simple idea immediately turned into **"ok wait this could actually be a whole system"**.
+
+The original thought was pretty straightforward: I wanted a dashboard that could help me stay synced up with my agents. Not just a pretty board with fake cards on it, but something that could actually sit on top of my OpenClaw setup and help me see:
+
+- which agent I am working with
+- which project is active
+- what tasks exist
+- what state the project is in
+- what the agent has been saying
+- what context is available for a clean handoff
+
+So naturally what started as **"let's make a React app with Tailwind that looks like an agile scrum board"** turned into a full-on multi-agent control room.
+
+## The idea
+The thing I wanted did not really feel like a normal project board.
+
+A normal board tracks tickets.
+
+What I wanted was something that could track the actual relationship between:
+
+- **agent workspaces**
+- **project folders**
+- **task files**
+- **project-context docs**
+- **real live chat sessions**
+
+In other words, I wanted the board to reflect reality instead of asking me to manually recreate reality in a SaaS tool.
+
+That meant the dashboard needed to live outside any one project and read from the filesystem directly.
+
+So I moved it into its own home-level directory and made it treat OpenClaw workspaces as data sources.
+
+## What I built
+By the end of the session, the dashboard could:
+
+- scan agent workspaces under a shared root
+- create **agent tabs** across the top
+- let me choose a project from a dropdown
+- show a collapsible **Details** section with useful project info
+- render a kanban board with **New / In Progress / Review / Done** lanes
+- read tasks from `${project}/tasks`
+- check whether both `tasks/` and `project-context/` exist
+- initialize missing project board folders
+- prompt the selected agent to read or update project context
+- show a real chat pane connected to OpenClaw sessions
+- send task cards directly to the selected agent
+- create, edit, delete, and drag tasks while persisting changes back to JSON
+
+That last part mattered a lot to me.
+
+I did **not** want a board that just looked interactive while secretly losing state on refresh. If I drag a task to a new lane, I want the backing file updated. If I edit a task, I want the JSON updated. If I delete one, I want it gone from disk.
+
+Otherwise it is just theater.
+
+## The project structure I landed on
+One of the biggest design choices was deciding **where this thing should live**.
+
+At first, it existed inside one agent workspace. That worked for prototyping, but it was the wrong long-term shape. If the whole point is to coordinate multiple agents and multiple projects, the dashboard should not be owned by one workspace.
+
+So the app became a standalone project and the workspaces became inputs.
+
+That let me model things more cleanly:
+
+- dashboard app in its own repo/directory
+- OpenClaw workspaces as the source of truth
+- `tasks/` as the board-backed task source
+- `project-context/` as the durable handoff/state source
+
+That ended up feeling way more like an operating surface and way less like a toy UI.
+
+## Challenges I hit
+And yes, there were plenty.
+
+### 1. The UI moved faster than the wiring
+This was probably the most common pattern of the day.
+
+I would build a clean piece of UI first — a button, a modal, a menu, a drag target — and then discover that one tiny part of the actual behavior had fallen out of the file during a refactor.
+
+This happened with things like:
+
+- initialize project
+- create task
+- create-task modal state
+- drag/drop persistence
+- lane move status updates
+- update modal state
+
+The good news is none of these were architectural failures. They were the kind of integration gaps you get when you are moving fast and reshaping the interface at the same time.
+
+The fix pattern was almost always the same:
+
+1. inspect the exact live code path
+2. find the missing state or handler
+3. reconnect the UI event to the real backend action
+4. rebuild and test again
+
+Not glamorous, but absolutely real software work.
+
+### 2. Drag and drop is always a little cursed
+At one point the board looked right, but lane changes were not actually updating the task JSON.
+
+Then after one fix, drag itself broke.
+
+Then after *that* fix, I found that part of the system was still using React state to track the dragged task while another part had already moved to using `dataTransfer`.
+
+So the drag pipeline was split in half.
+
+That was a very good reminder that interactive UI bugs are often not one bug — they are two almost-correct ideas colliding.
+
+Once I made drag/drop use one consistent path and tied the lane move to the real task update route, it started behaving like a real board instead of a clever illusion.
+
+### 3. Vite dev middleware can make you feel insane
+A lot of the dashboard behavior runs through custom Vite dev-server middleware.
+
+That gave me a really nice local-development loop because I could expose small internal routes like:
+
+- workspace scanning
+- task create/update/delete
+- project initialization
+- chat state lookup
+- chat send
+
+But it also introduced a subtle gotcha: sometimes the frontend had already updated, while the dev middleware was still old because the server had not been restarted.
+
+So a button would **look** correct and still do nothing.
+
+That kind of thing will absolutely make you question your own memory if you are not careful.
+
+Once I recognized the pattern, the rule became simple: if behavior feels impossibly stale, restart the dev server before spiraling.
+
+### 4. The board needed to reflect operational reality
+One thing I kept coming back to all day was that a project board is not just visual organization. It is a handoff tool.
+
+That is why `project-context/` became part of initialization instead of just `tasks/`.
+
+A project is not really healthy just because it has cards.
+
+It also needs:
+
+- current context
+- recent decisions
+- status docs
+- handoff-friendly structure
+
+That ended up being one of my favorite parts of the design. The board is not only about action. It is also about continuity.
+
+## The part I like most
+Honestly? The moment it stopped being a static dashboard mockup and started becoming a **control room**.
+
+Once it could:
+
+- read the real workspace structure
+- show real chat history
+- send real messages
+- initialize project folders
+- persist task changes to disk
+- prompt agents to read/update project context
+
+…it started feeling like an actual interface for working *with* agents rather than just looking at them.
+
+That is the difference I care about.
+
+I am not that interested in polished UI that ends at the pixel layer. I like systems where the UI is a thin, powerful layer over real state and real behavior.
+
+## Why this matters
+I think there is a very real product category forming around **agent operations**.
+
+Not just chat with an agent.
+Not just task management.
+Not just file browsing.
+
+But a workspace where I can coordinate:
+
+- context
+- planning
+- execution
+- state tracking
+- handoff quality
+- live interaction
+
+all in one place.
+
+That is what this build started to become.
+
+It is still an MVP, but it is the kind of MVP I like: one that already proves the interaction model instead of only proving that I know how to draw nice boxes.
+
+## Final thoughts
+This was one of those builds that reminded me why I like doing this.
+
+A rough idea turned into a real tool in a single day, and every time I hit a problem it made the system definition better:
+
+- where should this live?
+- what is the source of truth?
+- what counts as project initialization?
+- how should tasks be tracked?
+- what makes a clean handoff?
+- how do I make agent work visible without turning it into chaos?
+
+That is the good stuff.
+
+And yes, I know recruiters love to read about shipping velocity, systems thinking, and full-stack problem solving. This project has all of that. But what I actually like about it is simpler:
+
+I built something useful.
+I kept refining it until it behaved like it should.
+And now it is the kind of tool I genuinely want to keep using.
+
+That feels like a pretty good day.

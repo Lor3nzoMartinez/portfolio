@@ -1,94 +1,286 @@
-# **Magic Portfolio by Once UI**
+# Lorenzo Martinez Portfolio
 
-View the [demo here](https://demo.magic-portfolio.com).
+Personal portfolio built with **Next.js**, **MDX**, and **Once UI**.
 
-![Magic Portfolio](https://demo.magic-portfolio.com/images/og/home.jpg)
+This repo powers a portfolio site with:
 
+- a landing page
+- an about page
+- a projects/work section
+- a blog
+- MDX-driven content for posts and projects
+- generated SEO metadata / OG images / sitemap support
 
-# **Getting started**
+## Tech stack
 
-Magic Portfolio was built with [Once UI](https://once-ui.com) for [Next.js](https://nextjs.org). It requires Node.js v18.17+.
+- **Next.js 15**
+- **React 19**
+- **TypeScript**
+- **MDX**
+- **Once UI**
+- **gray-matter** for frontmatter parsing
+- **PostCSS / Sass**
 
-**1. Clone the repository**
+---
+
+## Repo structure
+
+```text
+src/
+├── app/
+│   ├── about/                 # about page
+│   ├── blog/                  # blog index + blog post routes
+│   │   └── posts/             # blog posts as .mdx files
+│   ├── work/                  # projects index + project routes
+│   │   └── projects/          # project entries as .mdx files
+│   ├── api/                   # auth/check-auth endpoints
+│   ├── og/                    # OG image generation
+│   ├── resources/             # site content + config
+│   └── utils/                 # helpers for parsing content
+├── components/                # reusable app components
+└── once-ui/                   # Once UI system + theme components
 ```
-git clone https://github.com/once-ui-system/magic-portfolio.git
+
+Important content locations:
+
+```text
+src/app/blog/posts/
+src/app/work/projects/
+src/app/resources/content.js
+src/app/resources/config.js
 ```
 
-**2. Install dependencies**
+---
+
+## How content works
+
+This portfolio is primarily content-driven.
+
+### Blog posts
+Add a new `.mdx` file to:
+
+```text
+src/app/blog/posts/
 ```
+
+Example frontmatter:
+
+```md
+---
+title: "My post title"
+publishedAt: "2026-03-24"
+summary: "Short summary for cards and SEO."
+tags:
+  - "React"
+  - "Next.js"
+  - "TypeScript"
+---
+```
+
+### Projects
+Add a new `.mdx` file to:
+
+```text
+src/app/work/projects/
+```
+
+Example frontmatter:
+
+```md
+---
+title: "Project Name"
+publishedAt: "2026-03-24"
+summary: "Short project summary"
+images: []
+team:
+  - name: "Lorenzo Martinez"
+    role: "Software Engineer"
+    avatar: "/images/avatar.jpg"
+    linkedIn: "https://www.linkedin.com/in/lorenzo-martinez/"
+link: "https://example.com"
+---
+```
+
+### Site-wide content
+Edit core profile/site content here:
+
+```text
+src/app/resources/content.js
+```
+
+This includes things like:
+
+- name
+- headline
+- about page content
+- work experience
+- social links
+- page labels/descriptions
+
+### Site config
+Edit config here:
+
+```text
+src/app/resources/config.js
+```
+
+This includes:
+
+- base URL
+- route toggles
+- password-protected routes
+- fonts
+- theme styling
+- visual effects
+
+---
+
+## Features
+
+### MDX-powered publishing
+Both blog posts and projects are authored as `.mdx` files, making it easy to write long-form content directly in the repo.
+
+### Projects + blog as first-class content
+The portfolio is set up so projects and blog posts are both easy to add, preview, and expand over time.
+
+### Multiple blog tags
+Blog posts now support a real `tags:` array in frontmatter, not just a single tag.
+
+### SEO support
+The site includes:
+
+- metadata generation
+- Open Graph support
+- sitemap generation
+- robots.txt generation
+- structured schema helpers
+
+---
+
+## Getting started
+
+## Prerequisites
+
+- Node.js 18+
+- npm
+
+## Install
+
+```bash
 npm install
 ```
 
-**3. Run dev server**
-```
+## Run locally
+
+```bash
 npm run dev
 ```
 
-**4. Edit config**
-```
-src/app/resources/config
-```
+Then open:
 
-**5. Edit content**
-```
-src/app/resources/content
+```text
+http://localhost:3000
 ```
 
-**6. Create blog posts / projects**
+## Build
+
+```bash
+npm run build
 ```
-Add a new .mdx file to src/app/blog/posts or src/app/work/projects
+
+## Start production server
+
+```bash
+npm run start
 ```
 
-# **Documentation**
+## Lint
 
-Docs available at: [docs.once-ui.com](https://docs.once-ui.com/docs/magic-portfolio/quick-start)
+```bash
+npm run lint
+```
 
-# **Features**
+---
 
-## **Once UI**
-- All tokens, components & features of [Once UI](https://once-ui.com)
+## Common editing workflows
 
-## **SEO**
-- Automatic open-graph and X image generation with next/og
-- Automatic schema and metadata generation based on the content file
+### Add a new blog post
+1. Create a new `.mdx` file in `src/app/blog/posts/`
+2. Add frontmatter
+3. Write the post body in MDX
+4. Run the dev server and preview the blog page
 
-## **Design**
-- Responsive layout optimized for all screen sizes
-- Timeless design without heavy animations and motion
-- Endless customization options through [data attributes](https://once-ui.com/docs/theming)
+### Add a new project
+1. Create a new `.mdx` file in `src/app/work/projects/`
+2. Add frontmatter
+3. Write the project details
+4. Preview it under `/work`
 
-## **Content**
-- Render sections conditionally based on the content file
-- Enable or disable pages for blog, work, gallery and about / CV
-- Generate and display social links automatically
-- Set up password protection for URLs
+### Update home/about copy
+Edit:
 
-## **Localization**
-- A localized version of Magic Portfolio is available with the next-intl library
-- To use localization, switch to the 'i18n' branch
+```text
+src/app/resources/content.js
+```
 
-# **Authors**
+---
 
-Connect with us on Threads or LinkedIn.
+## Notes / gotchas
 
-Lorant Toth: [Threads](https://www.threads.net/@lorant.one), [LinkedIn](https://www.linkedin.com/in/tothlorant/)  
-Zsofia Komaromi: [Threads](https://www.threads.net/@zsofia_kom), [LinkedIn](https://www.linkedin.com/in/zsofiakomaromi/)
+### 1. This repo still has Once UI scaffolding DNA
+This project started from a Once UI portfolio base, but has been customized with personal content and custom blog/project content.
 
-Localization added by [François Hernandez](https://github.com/francoishernandez)
+### 2. Some lockfiles were already modified
+If you are picking this up later, check both:
 
-# **Get involved**
+- `package-lock.json`
+- `yarn.lock`
 
-- Join the [Design Engineers Club on Discord](https://discord.com/invite/5EyAQ4eNdS) and share your portfolio with us!
-- Report a [bug](https://github.com/once-ui-system/magic-portfolio/issues/new?labels=bug&template=bug_report.md).
+before assuming dependency changes were intentional.
 
-# **License**
+### 3. ESLint config warning
+At the moment, the app can build successfully even if `npm run lint` complains about the `next/core-web-vitals` config reference depending on local toolchain/setup.
+That is worth cleaning up separately if you want a fully green lint pipeline.
 
-Distributed under the CC BY-NC 4.0 License.
-- Commercial usage is not allowed.
-- Attribution is required.
-- You can extend the license to commercial use by purchasing a [Once UI Pro](https://once-ui.com/pricing) license.
+---
 
-See `LICENSE.txt` for more information.
+## Recommended next improvements
 
-# **Deploy with Vercel**
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fonce-ui-system%2Fmagic-portfolio&project-name=portfolio&repository-name=portfolio&redirect-url=https%3A%2F%2Fgithub.com%2Fonce-ui-system%2Fmagic-portfolio&demo-title=Magic%20Portfolio&demo-description=Showcase%20your%20designers%20or%20developer%20portfolio&demo-url=https%3A%2F%2Fdemo.magic-portfolio.com&demo-image=%2F%2Fraw.githubusercontent.com%2Fonce-ui-system%2Fmagic-portfolio%2Fmain%2Fpublic%2Fimages%2Fog%2Fhome.jpg)
+If I keep evolving this repo, the next useful improvements would be:
+
+- add screenshots/thumbnails for more projects
+- add featured tags or filtering on blog posts
+- clean up lint config to remove toolchain-specific warnings
+- add tests for content parsing helpers
+- make portfolio metadata/content stricter with stronger TypeScript typing
+
+---
+
+## Personal GitHub README-style summary
+
+This repo is the public-facing home for:
+
+- my work
+- my writing
+- my projects
+- the way I think about building software
+
+It is intentionally set up so I can quickly publish:
+
+- a new project write-up
+- a technical blog post
+- portfolio updates
+
+without having to fight the structure every time.
+
+---
+
+## Commands
+
+```bash
+npm install
+npm run dev
+npm run build
+npm run start
+npm run lint
+```
